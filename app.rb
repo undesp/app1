@@ -1,16 +1,18 @@
 require 'rubygems'
 require 'sinatra'
+require 'Digest'
 
-def get_user_name userNameFromFile
-	File.open('user.txt','r') do |f|
+@password = ''
+def get_user_name userNameFromPost
+	File.open('./users.txt','r:ASCII-8BIT') do |f|
 		while line = f.gets
-			if line.strip == userNameFromFile
+			if line.strip == userNameFromPost
 				@password = f.gets.strip
-				exit
+				break
 			end
 		end
 	end
-
+#puts @password
 end
 
 configure do
@@ -41,15 +43,16 @@ end
 
 post '/login/attempt' do
 		get_user_name params['username']
-
-	 if params['username'] == 'admin' && params['password'] == '987654'
-  		session[:identity] = params['username']
-	  	where_user_came_from = session[:previous_url] || '/'
-	  	redirect to where_user_came_from
+		pass_hash = Digest::SHA2.new(512).digest(params['password'])
+	 if params['username'] == 'admin' && pass_hash == @password
+	  		session[:identity] = params['username']
+		  	where_user_came_from = session[:previous_url] || '/'
+		  	redirect to where_user_came_from
 	  else
-	  	@message = 'access denied'
-	  	#erb "<div class='alert alert-message'>Access denied</div>"
-	  	erb :login_form
+		  	@message = 'access denied'
+		  	#@message = "#{@password}'!!!!!!!!!!!!!'#{pass_hash}"
+		  	#erb "<div class='alert alert-message'>Access denied</div>"
+		  	erb :login_form
 	  	
 
 	end
