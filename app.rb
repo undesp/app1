@@ -44,7 +44,7 @@ end
 post '/login/attempt' do
 		get_user_name params['username']
 		pass_hash = Digest::SHA2.new(512).digest(params['password'])
-	 if params['username'] == 'admin' && pass_hash == @password
+	 if  pass_hash == @password
 	  		session[:identity] = params['username']
 		  	where_user_came_from = session[:previous_url] || '/'
 		  	redirect to where_user_came_from

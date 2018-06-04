@@ -21,7 +21,8 @@ end
 
 #Ïטרול ג פאיכ
 File.open('users.txt','a') {|f| f.write "#{userName}\n"}
-File.open('users.txt','a:ASCII-8BIT') {|f| f.write "#{pass}\n"}
+#File.open('users.txt','a:ASCII-8BIT') {|f| f.write "#{pass}\n"}
+File.open('users.txt','a') {|f| f.write "#{pass}\n"}
 
 
  
