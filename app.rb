@@ -3,7 +3,7 @@ require 'sinatra'
 require 'Digest'
 
 @password = ''
-def get_user_name userNameFromPost
+def get_user_name_from_file userNameFromPost
 	File.open('./users.txt','r:ASCII-8BIT') do |f|
 		while line = f.gets
 			if line.strip == userNameFromPost
@@ -12,7 +12,6 @@ def get_user_name userNameFromPost
 			end
 		end
 	end
-#puts @password
 end
 
 configure do
@@ -42,19 +41,15 @@ get '/login/form' do
 end
 
 post '/login/attempt' do
-		get_user_name params['username']
+		get_user_name_from_file params['username']
 		pass_hash = Digest::SHA2.new(512).digest(params['password'])
 	 if  pass_hash == @password
 	  		session[:identity] = params['username']
 		  	where_user_came_from = session[:previous_url] || '/'
 		  	redirect to where_user_came_from
 	  else
-		  	@message = 'access denied'
-		  	#@message = "#{@password}'!!!!!!!!!!!!!'#{pass_hash}"
-		  	#erb "<div class='alert alert-message'>Access denied</div>"
-		  	erb :login_form
-	  	
-
+	  	@message = 'Access denied!'
+		 halt erb(:login_form)
 	end
 end
 
