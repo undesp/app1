@@ -64,6 +64,13 @@ get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
 
+get '/visit' do
+  erb :visit
+end
+get '/contacts' do
+  erb :contacts
+end
+
 get '/about' do
   erb :about
 end
