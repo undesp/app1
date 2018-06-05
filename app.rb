@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'Digest'
+require 'sinatra/reloader'
 
 @password = ''
 #получить пароль пароль из файла по имени пользователя
