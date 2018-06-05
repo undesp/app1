@@ -3,7 +3,8 @@ require 'sinatra'
 require 'Digest'
 
 @password = ''
-def get_user_name_from_file userNameFromPost
+#получить пароль пароль из файла по имени пользователя
+def get_password_from_file userNameFromPost
 	File.open('./users.txt','r:ASCII-8BIT') do |f|
 		while line = f.gets
 			if line.strip == userNameFromPost
@@ -41,7 +42,7 @@ get '/login/form' do
 end
 
 post '/login/attempt' do
-		get_user_name_from_file params['username']
+		get_password_from_file params['username']
 		pass_hash = Digest::SHA2.new(512).digest(params['password'])
 	 if  pass_hash == @password
 	  		session[:identity] = params['username']
