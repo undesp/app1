@@ -73,15 +73,18 @@ get '/logout' do
   erb "<div class='alert alert-message'>Logged out</div>"
 end
 
-get '/secure/place' do
-  erb 'This is a secret place that only <%=session[:identity]%> has access to!'
+get '/secure/place' do	
+  erb :private
+end
+get '/secure/zapis.txt' do	
+  erb ./secure/zapis.txt
 end
 
 get '/visit' do
   erb :visit
 end
 post '/visit/accept' do
-	info_into_file './public/zapis.txt', params
+	info_into_file './secure/zapis.txt', params
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
 end
 
