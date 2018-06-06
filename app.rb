@@ -63,6 +63,7 @@ post '/login/attempt' do
 	  		session[:identity] = params['username']
 		  	where_user_came_from = session[:previous_url] || '/'
 		  	redirect to where_user_came_from
+		  	#redirect '/secure/place'
 	  else
 	  	@message = 'Access denied!'
 		 halt erb(:login_form)
@@ -89,11 +90,11 @@ post '/visit/accept' do
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
 end
 
-post '/contacts/accept' do
+post '/contacts' do
 	File.open('./public/contacts.txt','a') do |f|
 		f.write "#{params['inputEmail']}\n#{params['contactsText']}\n\n"
 	end
-	erb :contacts
+	erb "Спасибо за Ваш отзыв!"
 end
 
 
