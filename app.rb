@@ -89,6 +89,15 @@ post '/visit/accept' do
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
 end
 
+post '/contacts/accept' do
+	File.open('./public/contacts.txt','a') do |f|
+		f.write "#{params['inputEmail']}\n#{params['contactsText']}\n\n"
+	end
+	erb :contacts
+end
+
+
+
 get '/contacts' do
   erb :contacts
 end
