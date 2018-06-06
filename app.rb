@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'Digest'
 require 'sinatra/reloader'
+require 'CSV'
 
 @password = ''
 #получить пароль пароль из файла по имени пользователя
@@ -74,17 +75,17 @@ get '/logout' do
 end
 
 get '/secure/place' do	
-  erb :private
+   erb :private
+
 end
-get '/secure/zapis.txt' do	
-  erb ./secure/zapis.txt
-end
+
+
 
 get '/visit' do
   erb :visit
 end
 post '/visit/accept' do
-	info_into_file './secure/zapis.txt', params
+	info_into_file './public/zapis.txt', params
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
 end
 
