@@ -1,8 +1,12 @@
   <%=@message%>
+</br>
 <form action='/login/attempt' method='post' class="form-inline well">
+  <label  class="col-sm-1 control-label">Логин</label>
   <input type="text" name='username' placeholder="username" autofocus> 
-   <input type="password" name='password' placeholder="password" >
-   <a>  </a>
+
+  <label  class="col-sm-1 control-label">Пароль</label>
+  <input type="password" name='password' placeholder="password" >
+
   <input class="btn-primary" type='submit' value='log in'>
 </form>
 

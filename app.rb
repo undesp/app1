@@ -16,6 +16,19 @@ def get_password_from_file userNameFromPost
 	end
 end
 
+#Слить информацию по записи к парикмахеру в файл /public/users.txt
+def info_into_file file, hh
+	File.open(file,'a') do |f|
+		f.write "Имя: #{hh['inputName']}
+E-mail: #{hh['inputEmail3']}
+Номер телефона: #{hh['inputPhone']}
+Записан на: #{hh['inputDateTime']}
+К специалисту: #{hh['inputSpecialist']}\n\n"
+				
+	end
+	
+end
+
 configure do
   enable :sessions
 end
@@ -67,6 +80,11 @@ end
 get '/visit' do
   erb :visit
 end
+post '/visit/accept' do
+	info_into_file './public/zapis.txt', params
+	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
+end
+
 get '/contacts' do
   erb :contacts
 end

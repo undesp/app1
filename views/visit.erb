@@ -1,44 +1,45 @@
-<p class="lead">Тут вы можете записаться к парикмахеру</p>
-
-
-<form class="form-horizontal">
+</br>
+<form action='/visit/accept' method='post' class="form-horizontal">
   <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label">Ваше имя</label>
     <div class="col-sm-10">
-      <input type="Text" class="form-control" id="inputName" placeholder="Введите ваше имя" autofocus>
+      <input type="Text" class="form-control" name='inputName' id="inputName" placeholder="Введите ваше имя" autofocus>
     </div>
   </div> 
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Введите ваш Email" >
+      <input type="email" class="form-control" name='inputEmail3' id="inputEmail3" placeholder="Введите ваш Email" >
     </div>
   </div> 
   <div class="form-group">
     <label for="inputPhone" class="col-sm-2 control-label">Номер телефона</label>
     <div class="col-sm-10">
-      <input type="Text" class="form-control" id="inputPhone" placeholder="Введите ваш номер телефона" >
+      <input type="Text" class="form-control" name='inputPhone' id="inputPhone" placeholder="Введите ваш номер телефона" >
     </div>
   </div>
   <div class="form-group">
     <label for="inputDateTime" class="col-sm-2 control-label">Когда Вас ждать?</label>
     <div class="col-sm-10">
-      <input type="Text" class="form-control" id="inputDateTime" placeholder="Введите дату и время" >
+      <input type="Text" class="form-control" name='inputDateTime' id="inputDateTime" placeholder="Введите дату и время" >
     </div>
   </div>
   <div class="form-group">
-    <label for="inputSpecialist" class="col-sm-3 control-label">Выберите парикмахера:</label>
+    <label for="inputSpecialist" class="col-sm-4 control-label">Выберите парикмахера:</label>
     <div class="col-sm-10">
-      <select  class="form-control" id="inputSpecialist"  >
-      	<option>Специалист 1</option>
-      	<option>Специалист 2</option>
+      <select class="form-control" name='inputSpecialist' id="inputSpecialist"  >
+      	<option>Walter White</option>
+      	<option>Jessie Pinkman</option>
+      	<option>Gus Fring</option>
+      </select>
     </div>
   </div>
+
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
+    <div class="col-sm-offset-2 col-sm-2">
       <div class="checkbox">
         <label>
-          <input type="checkbox"> Remember me
+          <input type="checkbox" name='inputRememberMe'> Запомнить меня
         </label>
       </div>
     </div>
