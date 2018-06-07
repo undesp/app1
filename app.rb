@@ -114,5 +114,6 @@ get '/contacts' do
 end
 
 get '/about' do
+	    @error = 'Thi is the error!!'
   erb :about
 end
