@@ -95,7 +95,7 @@ get '/visit' do
 end
 post '/visit' do
 	 
-	@error=nil
+	
 	@inputName = params[:inputName]
 	@inputEmail3 = params[:inputEmail3]
 	@inputPhone = params[:inputPhone]
@@ -111,18 +111,14 @@ post '/visit' do
 			 }
 
 	
-
+	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 	if @error != ''
-		@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 		return erb :visit 
-
 	end
 
-
-
+	@error = nil
 	info_into_file './public/zapis.txt', params
 	info_into_file_csv './public/zapis2.csv', params
-
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
 	
 end
