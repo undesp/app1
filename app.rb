@@ -121,6 +121,8 @@ post '/visit' do
 
 
 
+
+
 	@error = nil
 	info_into_file './public/zapis.txt', params
 	info_into_file_csv './public/zapis2.csv', params
