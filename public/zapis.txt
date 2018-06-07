@@ -40,3 +40,24 @@ E-mail:
 Записан на: 
 К специалисту: Walter White
 
+Имя: asdas
+E-mail: 
+Номер телефона: 
+Записан на: 
+К специалисту: Jessie Pinkman
+Цвет краски: #46d6db
+
+Имя: asdas
+E-mail: apsd@dsfds.cvc
+Номер телефона: 22222111
+Записан на: 16:15
+К специалисту: Jessie Pinkman
+Цвет краски: #5484ed
+
+Имя: asdas
+E-mail: apsd@dsfds.cvc
+Номер телефона: 22222111
+Записан на: 16:15
+К специалисту: Jessie Pinkman
+Цвет краски: #5484ed
+

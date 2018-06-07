@@ -14,7 +14,8 @@
    <script type="text/javascript">
       function format_link(link){
         if (link)
-          return "<a href='" + link + "' target='_blank'>" + link + "</a>";
+          //return "<a href='" + link + "' target='_blank'>" + link + "</a>";
+      return $('link').simplecolorpicker();
         else
           return "";
       }
@@ -25,7 +26,7 @@
         allow_download: true,
         csv_options: {separator: ',', delimiter: '"'},
         datatables_options: {"paging": true}
-        
+                
         
       });
     </script>

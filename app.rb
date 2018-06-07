@@ -25,11 +25,17 @@ def info_into_file file, hh
 E-mail: #{hh['inputEmail3']}
 Номер телефона: #{hh['inputPhone']}
 Записан на: #{hh['inputDateTime']}
-К специалисту: #{hh['inputSpecialist']}\n\n"
-				
+К специалисту: #{hh['inputSpecialist']}
+Цвет краски: #{hh['colorpicker']}\n\n"
 	end
-	
 end
+
+def info_into_file_csv file, hh
+	File.open(file,'a') do |f|
+		f.write "#{hh['inputName']},#{hh['inputEmail3']},#{hh['inputPhone']},#{hh['inputDateTime']},#{hh['inputSpecialist']},#{hh['colorpicker']}\n"
+	end
+end
+
 
 configure do
   enable :sessions
@@ -90,6 +96,7 @@ get '/visit' do
 end
 post '/visit/accept' do
 	info_into_file './public/zapis.txt', params
+	info_into_file_csv './public/zapis2.csv', params
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
 end
 
