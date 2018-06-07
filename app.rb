@@ -74,7 +74,7 @@ post '/login/attempt' do
 		  	redirect to where_user_came_from
 		  	#redirect '/secure/place'
 	  else
-	  	@message = 'Access denied!'
+	  	@error = 'Access denied!'
 		 halt erb(:login_form)
 	end
 end
@@ -90,14 +90,41 @@ get '/secure/place' do
 end
 
 
-
 get '/visit' do
   erb :visit
 end
-post '/visit/accept' do
+post '/visit' do
+	 
+	@error=nil
+	@inputName = params[:inputName]
+	@inputEmail3 = params[:inputEmail3]
+	@inputPhone = params[:inputPhone]
+	@inputDateTime = params[:inputDateTime]
+	@inputSpecialist = params[:inputSpecialist]
+	@colorpicker = params[:colorpicker]
+
+	# хеш
+	hh = { 	:inputName => 'Введите имя',
+			:inputEmail3 => 'Введите E-mail',
+			:inputPhone => 'Введите телефон',
+			:inputDateTime => 'Введите дату и время'
+			 }
+
+	
+
+	if @error != ''
+		@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
+		return erb :visit 
+
+	end
+
+
+
 	info_into_file './public/zapis.txt', params
 	info_into_file_csv './public/zapis2.csv', params
+
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
+	
 end
 
 post '/contacts' do
