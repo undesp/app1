@@ -104,17 +104,20 @@ post '/visit' do
 	@colorpicker = params[:colorpicker]
 
 	# хеш
-	hh = { 	:inputName => 'Введите имя',
-			:inputEmail3 => 'Введите E-mail',
-			:inputPhone => 'Введите телефон',
-			:inputDateTime => 'Введите дату и время'
+	hh = { 	:inputName => ' имя',
+			:inputEmail3 => ' E-mail',
+			:inputPhone => ' телефон',
+			:inputDateTime => ' дату и время'
 			 }
 
 	
 	@error = hh.select {|key,_| params[key] == ""}.values.join(", ")
 	if @error != ''
+		@error =  'Введите: ' + @error
 		return erb :visit 
 	end
+
+
 
 	@error = nil
 	info_into_file './public/zapis.txt', params
