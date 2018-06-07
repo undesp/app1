@@ -5,6 +5,7 @@ require 'sinatra/reloader'
 require 'CSV'
 
 @password = ''
+
 #получить пароль пароль из файла по имени пользователя
 def get_password_from_file userNameFromPost
 	File.open('./users.txt','r:ASCII-8BIT') do |f|
@@ -36,7 +37,8 @@ end
 
 helpers do
   def username
-    session[:identity] ? session[:identity] : 'Гость'
+
+     session[:identity] ? session[:identity] : 'Гость'
   end
 end
 
@@ -50,6 +52,7 @@ end
 
 get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
+
 end
 
 get '/login/form' do
