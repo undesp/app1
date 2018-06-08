@@ -32,9 +32,9 @@
     <label for="inputSpecialist" class="col-sm-4 control-label">Выберите парикмахера:</label>
     <div class="col-sm-10">
       <select class="form-control" name='inputSpecialist' id="inputSpecialist"  >
-      	<option>Walter White</option>
-      	<option>Jessie Pinkman</option>
-      	<option>Gus Fring</option>
+      	<option<%= @inputSpecialist == 'Walter White' ? ' selected' : '' %>>Walter White</option>
+      	<option<%= @inputSpecialist == 'Jessie Pinkman' ? ' selected' : '' %>>Jessie Pinkman</option>
+      	<option<%= @inputSpecialist == 'Gus Fring' ? ' selected' : '' %>>Gus Fring</option>
       </select>
     </div>
   </div>
