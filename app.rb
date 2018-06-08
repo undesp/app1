@@ -3,6 +3,8 @@ require 'sinatra'
 require 'Digest'
 require 'sinatra/reloader'
 require 'CSV'
+require 'bundler/setup'
+
 set :bind, '0.0.0.0'
 
 @password = ''

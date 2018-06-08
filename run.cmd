@@ -1,1 +1,1 @@
-bundle exec ruby app.rb
+start bundle exec ruby app.rb
