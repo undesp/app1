@@ -3,6 +3,7 @@ require 'sinatra'
 require 'Digest'
 require 'sinatra/reloader'
 require 'CSV'
+set :bind, '0.0.0.0'
 
 @password = ''
 
@@ -118,15 +119,14 @@ post '/visit' do
 	end
 
 
-
-
-
-
-
 	@error = nil
 	info_into_file './public/zapis.txt', params
 	info_into_file_csv './public/zapis2.csv', params
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
+
+	require 'pony'
+
+
 	
 end
 
@@ -134,6 +134,7 @@ post '/contacts' do
 	File.open('./public/contacts.txt','a') do |f|
 		f.write "#{params['inputEmail']}\n#{params['contactsText']}\n\n"
 	end
+	
 	erb "Спасибо за Ваш отзыв!"
 end
 
