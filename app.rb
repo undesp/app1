@@ -43,6 +43,31 @@ end
 
 configure do
   enable :sessions
+
+	#begin
+	    @db = PG.connect :dbname => 'app1', :user => 'user', :password => 'qwe'
+	    @db.exec ("CREATE TABLE IF NOT EXISTS public.users
+					(   id serial NOT NULL,
+					    name text,
+					    email text,
+					    phone text,
+					    dateStamp text,
+					    specialist text,
+					    color text,
+					    PRIMARY KEY (id)
+					)
+					WITH (
+					    OIDS = FALSE
+					)
+					TABLESPACE pg_default")
+	    #@db.exec ('ALTER TABLE public.users					    OWNER to user;')
+	    @error = @db.server_version
+
+	#rescue PG::Error => e
+	#    @error = e.message 
+	#ensure
+	#    @db.close if @db
+	#end
 end
 
 helpers do
