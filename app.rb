@@ -3,6 +3,7 @@ require 'sinatra'
 require 'Digest'
 require 'sinatra/reloader'
 require 'CSV'
+require 'pg'
 
 
 set :bind, '0.0.0.0'
@@ -126,10 +127,7 @@ post '/visit' do
 	info_into_file_csv './public/zapis2.csv', params
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
 
-	require 'pony'
-
-
-	
+		
 end
 
 post '/contacts' do
