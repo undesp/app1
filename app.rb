@@ -23,6 +23,10 @@ def get_password_from_file userNameFromPost
 end
 
 #Слить информацию по записи к парикмахеру в файл /public/users.txt
+def db_connect
+	@db = PG.connect :dbname => 'app1', :user => 'user', :password => 'qwe'
+end 
+
 def info_into_file file, hh
 	File.open(file,'a') do |f|
 		f.write "Имя: #{hh['inputName']}
@@ -44,7 +48,7 @@ end
 configure do
   enable :sessions
 
-	    @db = PG.connect :dbname => 'app1', :user => 'user', :password => 'qwe'
+	    db_connect
 	    @db.exec ("CREATE TABLE IF NOT EXISTS public.users
 					(   id serial NOT NULL,
 					    name text,
@@ -137,9 +141,12 @@ post '/visit' do
 		@error =  'Введите: ' + @error
 		return erb :visit 
 	end
+	db_connect
+	@db.prepare('statement1', 'insert into users (name, email, phone, dateStamp, specialist, color ) 
+										  values ($1, $2, $3, $4, $5, $6)')
+	@db.exec_prepared('statement1', [ @inputName, @inputEmail3, @inputPhone, @inputDateTime, @inputSpecialist, @colorpicker  ])
+	@db.close
 
-
-	@error = nil
 	info_into_file './public/zapis.txt', params
 	info_into_file_csv './public/zapis2.csv', params
 	erb	 "Вы записаны к <%=params['inputSpecialist']%> на <%=params['inputDateTime']%>"
