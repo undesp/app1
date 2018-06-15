@@ -169,6 +169,9 @@ get '/contacts' do
 end
 
 get '/about' do
-	    @error = 'Thi is the error!!'
   erb :about
+end
+
+get '/secure/showUsersCSV' do
+  erb :show_users_csv
 end
