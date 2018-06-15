@@ -114,20 +114,17 @@ get '/secure/place' do
 
 end
 
-
 get '/visit' do
   erb :visit
 end
+
 post '/visit' do
-	 
-	
 	@inputName = params[:inputName]
 	@inputEmail3 = params[:inputEmail3]
 	@inputPhone = params[:inputPhone]
 	@inputDateTime = params[:inputDateTime]
 	@inputSpecialist = params[:inputSpecialist]
 	@colorpicker = params[:colorpicker]
-
 	# хеш
 	hh = { 	:inputName => ' имя',
 			:inputEmail3 => ' E-mail',
@@ -145,6 +142,12 @@ post '/visit' do
 	db.prepare('statement1', 'insert into users (name, email, phone, dateStamp, specialist, color ) 
 										  values ($1, $2, $3, $4, $5, $6)')
 	db.exec_prepared('statement1', [ @inputName, @inputEmail3, @inputPhone, @inputDateTime, @inputSpecialist, @colorpicker  ])
+	#для параметра Date
+	res  = db.exec('select * from users')
+	res.each do |row|
+    @row2 << [row['name'],row['email'], row['phone'], row['datestamp'], row['specialist'], row['color']]
+	end
+
 	db.close
 
 	info_into_file './public/zapis.txt', params
@@ -170,6 +173,17 @@ end
 
 get '/about' do
   erb :about
+end
+
+get '/secure/showUsersDB' do
+	@row2 = Array.new() 
+	db = db_connect
+	res  = db.exec('select * from users')
+	res.each do |row|
+    @row2 << [row['name'],row['email'], row['phone'], row['datestamp'], row['specialist'], row['color']]
+	end
+  erb :show_users_db
+  
 end
 
 get '/secure/showUsersCSV' do

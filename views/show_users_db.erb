@@ -1,0 +1,25 @@
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css" type="text/css" media="screen" />
+<script>
+$(document).ready(function(){
+    $('#table-container2').DataTable({  data: <%= @row2 %>,
+        columns: [
+            { title: "Имя" },
+            { title: "E-Mail" },
+            { title: "№ телефона" },
+            { title: "Время записи" },
+            { title: "Специалист" },
+            { title: "Цвет" }
+        ],
+         "order": [[ 3, 'desc' ]]
+    });
+});
+</script>
+<style>
+body { margin: 20px auto 10px auto; width: 90%; font-family: sans-serif;}
+</style>
+
+ <table id="table-container2">
+	
+</table>

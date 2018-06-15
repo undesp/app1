@@ -1,10 +1,40 @@
 </br>
  <script type="text/javascript">
+
+      
+
+      jQuery.datetimepicker.setLocale('ru');
+
+      
+
      $(function() {
+
+      var logic = function( currentDateTime ){
+        // 'this' is jquery object datetimepicker
+        if( currentDateTime.getDay()==6 ){
+          this.setOptions({
+            minTime:'12:00'
+          });
+        }else
+          this.setOptions({
+            minTime:'10:00'
+          });
+      };
       
     //$('select[name="colorpicker"]').simplecolorpicker();      
      $('select[name="colorpicker"]').simplecolorpicker();
-     $('#inputDateTime2').datetimepicker();
+     $('#inputDateTime2').datetimepicker({
+      onChangeDateTime:logic,
+      onShow:logic,
+      step:30,
+      dayOfWeekStart:1,
+      disabledWeekDays:[0],
+      maxTime:'21:00',
+      formatDate:'Y/m/d',
+      minDate:'0'
+
+
+    });
      //jQuery.datetimepicker.setLocale('ru');
      //jQuery('#inputDateTime2').datetimepicker();
      //($('#navbarDropdown').text().trim() == 'Гость')
@@ -36,7 +66,7 @@
   <div class="form-group">
     <label for="inputDateTime" class="col-sm-3 control-label">Когда Вас ждать?</label>
     <div class="col-sm-10">
-      <input type="Text" class="form-control" name='inputDateTime' id="inputDateTime2" autocomplete="off" placeholder="Введите дату и время" value=<%= @inputDateTime %>  >
+      <input type="Text" class="form-control" name='inputDateTime' id="inputDateTime2" autocomplete="on" placeholder="Введите дату и время" value=<%= @inputDateTime %>  >
     </div>
   </div>
 
